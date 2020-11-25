@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
-const connectionUrl = 'mongodb+srv://reut:1234@cluster0.iiuta.mongodb.net/notes_app?retryWrites=true&w=majority'
+const dotenv = require('dotenv');
+dotenv.config();
+const connectionUrl = process.env.DB_URI
 
 function connectToMongo() {
   return mongoose.connect(connectionUrl, { useUnifiedTopology: true,  useNewUrlParser: true})
