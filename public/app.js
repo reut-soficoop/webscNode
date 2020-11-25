@@ -1,5 +1,5 @@
-const API_URL_NOTES = 'http://localhost:3000/notes'
-const API_URL_USERS = 'http://localhost:3000/users'
+const API_URL_NOTES = 'https://secret-plains-79535.herokuapp.com/notes'
+const API_URL_USERS = 'https://secret-plains-79535.herokuapp.com/users'
 
 function getNotes() {
   const options = {
