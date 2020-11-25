@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 async function addUser(newUser) {
-  const user = new userModel(newUser)
+  const password = await bcrypt.hash(newUser.password, 8)
+  const user = new userModel({
+    email: newUser.email,
+    password
+  })
   try {
     return await user.save()
   } catch (error) {
@@ -18,9 +22,7 @@ async function checkUser(email, password) {
     if (!user) {
         throw new Error('Unable to login, cannot find user with this email')
     }
-  
     const isMatch = await bcrypt.compare(password, user.password)
-  
     if (!isMatch) {
         throw new Error('Unable to login')
     }
